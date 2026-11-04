@@ -1,0 +1,80 @@
+﻿string again = "a";
+
+// Hlavní řídicí cyklus aplikace
+while (again.ToLower() == "a")
+{
+    Console.Clear();
+    Console.WriteLine("********************************************");
+    Console.WriteLine("***** Finanční plán: Splátkový kalendář *****");
+    Console.WriteLine("********************************************");
+    Console.WriteLine("*************** Tomáš Žižka ****************");
+    Console.WriteLine("********************************************");
+    Console.WriteLine();
+
+    // 1. Počáteční vklad / akontace
+    Console.Write("Zadejte počáteční vklad / akontaci v Kč (0 nebo více): ");
+    int first;
+    while (!int.TryParse(Console.ReadLine(), out first) || first < 0)
+    {
+        Console.Write("Hodnota musí být celé nezáporné číslo. Zadejte znovu: ");
+    }
+
+    // 2. Celková cílová částka (cena zboží / celkový dluh)
+    Console.Write("Zadejte celkovou cílovou částku k zaplacení v Kč: ");
+    int last;
+    while (!int.TryParse(Console.ReadLine(), out last) || last <= first)
+    {
+        Console.Write("Cílová částka musí být celé číslo vyšší než počáteční vklad. Zadejte znovu: ");
+    }
+
+    // 3. Pravidelná měsíční splátka (diference)
+    Console.Write("Zadejte výši pravidelné měsíční splátky v Kč (kladné číslo): ");
+    int step;
+    while (!int.TryParse(Console.ReadLine(), out step) || step <= 0)
+    {
+        Console.Write("Splátka musí být kladné celé číslo větší než 0. Zadejte znovu: ");
+    }
+
+    // 4. Rekapitulace zadaných parametrů
+    Console.WriteLine();
+    Console.WriteLine("================================================================");
+    Console.WriteLine($"Akontace: {first} Kč | Cíl: {last} Kč | Měsíční splátka: {step} Kč");
+    Console.WriteLine("================================================================");
+    Console.WriteLine();
+
+    // 5. Výpis splátkového kalendáře (jádro původního algoritmu)
+    Console.WriteLine("Plán měsíčních splátek:");
+    Console.WriteLine("----------------------------------------------------------------");
+    Console.WriteLine("  Měsíc  | Celkem splaceno | Zbývá doplatit");
+    Console.WriteLine("----------------------------------------------------------------");
+
+    int current = first;
+    int month = 0;
+
+    // Počáteční stav (Měsíc 0)
+    Console.WriteLine($"{month, 7} | {current, 13} Kč | {last - current, 12} Kč");
+
+    // Samotný cyklus s přičítáním diference (step)
+    while (current < last)
+    {
+        month++;
+        current += step;
+
+        // Ošetření poslední splátky, aby celková částka nepřesáhla dluh
+        if (current > last)
+        {
+            current = last;
+        }
+
+        int remaining = last - current;
+        Console.WriteLine($"{month, 7} | {current, 13} Kč | {remaining, 12} Kč");
+    }
+
+    Console.WriteLine("----------------------------------------------------------------");
+    Console.WriteLine($"Plán splacen za {month} měsíců.");
+
+    // 6. Dotaz na opakování programu
+    Console.WriteLine();
+    Console.Write("Pro opakování programu stiskněte 'a' a potvrďte klávesou Enter: ");
+    again = Console.ReadLine() ?? "";
+}
