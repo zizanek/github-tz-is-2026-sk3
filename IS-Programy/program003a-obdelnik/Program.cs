@@ -47,29 +47,30 @@ while(again.ToLower() == "a")
     // Vnější cyklus, který se bude starat o vykreslení správného počtu řádků
     for(int i = 1; i <= height; i++)
     {
+        if(i % 2 == 0)
+        {
+            // sudý řádek
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+        } 
+        else
+        {
+            // lichý řádek
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        }         
+        
         // Vnitří cyklus, který se stará o vykreslení správného počtu znaků v i-tém řádku
         for(int j = 1; j <= width; j++)
         {
             Console.Write("* ");
-            //System.Threading.Thread.Sleep(System.TimeSpan.FromMilliseconds(100));
+            System.Threading.Thread.Sleep(System.TimeSpan.FromMilliseconds(75));
         }
         Console.WriteLine();
-        
-        
     }
 
-    
-
-    
-
-
-
+    Console.ResetColor();
+   
     // Konec konkrétního algoritmu
     
-
-
-
-
     // Dotaz směrem k uživateli na opakování
     Console.WriteLine();
     Console.WriteLine();
