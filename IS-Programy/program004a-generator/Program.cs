@@ -47,9 +47,24 @@ while(again.ToLower() == "a")
 
 
 
+    // Začátek konkrétního algoritmu
+
+    // Deklarace pole a jeho alokace v paměti
+    int[] myRandNumbs = new int[n];
+
+    // Inicializace generátoru náhodných čísel
+    Random myRandNumb = new Random();
+    // Random myRandNumb = new Random(50); // Pevný seed pro testovací účely (vždy stejná čísla)
+
+    Console.WriteLine("Generovaná čísla: ");
+    for(int i = 0; i < myRandNumbs.Length; i++ )
+    {
+        // Generování i-tého náhodného čísla
+        myRandNumbs[i] = myRandNumb.Next(lowerBound, upperBound+1);
+        Console.Write($"{myRandNumbs[i]}; ");
+    }
     
 
-    // Začátek konkrétního algoritmu
 
 
 
