@@ -71,20 +71,34 @@ while(again.ToLower() == "a")
         // Generování i-tého náhodného čísla
         myRandNumbs[i] = myRandNumb.Next(lowerBound, upperBound+1);
         Console.Write($"{myRandNumbs[i]}; ");
+
+        // kladná, záporná nebo nuly
+        if(myRandNumbs[i] < 0)
+           negativeNumbs++;
+        else if(myRandNumbs[i] > 0)
+            positiveNumbs++;
+        else
+            zeros++;
+
+        // sudá a lichá čísla
+        if(myRandNumbs[i] % 2 == 0)
+            evenNumbs++;
+        else
+            oddNumbs++;     
     }
-    
-    
 
-
-
-
-
+    Console.WriteLine();
+    Console.WriteLine("==================================");
+    Console.WriteLine($"Počet záporných čísel: {negativeNumbs}");
+    Console.WriteLine($"Počet kladných čísel: {positiveNumbs}");
+    Console.WriteLine($"Počet nul: {zeros}");
+    Console.WriteLine("==================================");
+    Console.WriteLine($"Počet sudých čísel: {evenNumbs}");
+    Console.WriteLine($"Počet lichých čísel: {oddNumbs}");
+    Console.WriteLine("==================================");
+    Console.WriteLine();
     // Konec konkrétního algoritmu
     
-
-
-
-
     // Dotaz směrem k uživateli na opakování
     Console.WriteLine();
     Console.WriteLine();
